@@ -1,0 +1,27 @@
+// Last updated: 04/09/2026, 19:11:52
+class Solution {
+    public int missingInteger(int[] nums) {
+        int n = nums.length;
+
+        int sum = nums[0];
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1] + 1) {
+                sum += nums[i];
+            } else {
+                break;
+            }
+        }
+
+        java.util.HashSet<Integer> set = new java.util.HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        int candidate = sum;
+        while (set.contains(candidate)) {
+            candidate++;
+        }
+
+        return candidate;
+    }
+}
